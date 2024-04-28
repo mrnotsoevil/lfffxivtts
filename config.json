@@ -1,11 +1,13 @@
 {
     "language": "en",
-    "volume": 0.47,
+    "volume": 1.0,
     "enable": true,
     "websocketURI": "ws://localhost:8081/Messages",
     "tts": {
         "enableVoiceFixer": false,
         "enableNoiseReduce": true,
+        "enableLoudnessNormalization": true,
+        "loudnessNormalizationTarget": -23,
         "noiseReduceFactor": 0.5,
         "modelConfig": {
             "mls_de": {

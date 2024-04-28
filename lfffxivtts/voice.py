@@ -72,6 +72,7 @@ def select_voice(config, npc_id, full_name):
             id_num = int(npc_id)
             voice = config["voices"][lang][id_num % len(config["voices"][lang])]
             print("[w] Using fallback voice", voice["name"], "for NPC ID", npc_id)
+            return voice
         except:
             pass
 

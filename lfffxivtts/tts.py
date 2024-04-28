@@ -132,6 +132,21 @@ def tts(config, payload, npc_id, full_name):
                     except Exception as e:
                         print("[!] Error during voicefixer", e)
 
+                if config["tts"]["enableLoudnessNormalization"]:
+                    try:
+                        import pyloudnorm as pyln
+                        input_wav = output_wav
+                        output_wav = join(temp_dir, f"normalized_output_{index}.wav")
+                        data, rate = sf.read(input_wav)
+                        meter = pyln.Meter(rate)  # create BS.1770 meter
+                        loudness = meter.integrated_loudness(data)
+                        loudness_normalized_audio = pyln.normalize.loudness(data, loudness,
+                                                                            config["tts"]["loudnessNormalizationTarget"])
+                        sf.write(output_wav, loudness_normalized_audio, samplerate=rate)
+
+                    except Exception as e:
+                        print("[!] Error during loudness normalization", e)
+
                 audio_queue.put(output_wav)
             audio_queue.put(None)
 
