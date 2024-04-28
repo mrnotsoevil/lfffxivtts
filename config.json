@@ -4,7 +4,7 @@
     "enable": true,
     "websocketURI": "ws://localhost:8081/Messages",
     "tts": {
-        "enableVoiceFixer": true,
+        "enableVoiceFixer": false,
         "enableNoiseReduce": true,
         "noiseReduceFactor": 0.5,
         "modelConfig": {

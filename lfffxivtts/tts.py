@@ -24,7 +24,7 @@ def run_piper(config, payload, model, language, speaker, temp_dir, file_name_tem
 
     if model_lang in config["tts"]["modelConfig"]:
         voice_config = config["tts"]["modelConfig"][model_lang]
-    with open(config_file, "r") as f:
+    with open(config_file, "r", encoding='utf-8') as f:
         model_config = json.load(f)
 
     from piper import PiperVoice

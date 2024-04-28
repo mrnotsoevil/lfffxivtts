@@ -5,7 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/piper/piper_linux_x86_64/espeak-ng-data" />
       <excludeFolder url="file://$MODULE_DIR$/piper/piper_linux_x86_64/pkgconfig" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.10 (data)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
