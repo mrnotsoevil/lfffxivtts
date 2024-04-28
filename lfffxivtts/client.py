@@ -18,6 +18,10 @@ def tts_cancel():
 
 
 def tts_say(config, message):
+    if not config["enable"]:
+        print("[w] NO TTS WILL BE GENERATED (not enabled)")
+        return
+
     if "Speaker" not in message or not message["Speaker"]:
         print("[!] Rejected: ", json.dumps({"type": "run", "data": message}))
         return
