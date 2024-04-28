@@ -2,9 +2,15 @@
   "language": "en",
   "volume": 0.5,
   "tts": {
-    "enableVoiceFixer": true,
+    "enableVoiceFixer": false,
     "voiceFixerEnableSplitting": true,
     "voiceFixerSplittingSilenceThreshold": -40,
-    "voiceFixerSplittingSilenceDuration": 200
+    "voiceFixerSplittingSilenceDuration": 200,
+    "modelConfig": {
+      "mls_de": {
+        "minPhonemeCount": 80,
+        "phonemeCountFixNoiseScale": 0.333
+      }
+    }
   }
 }
