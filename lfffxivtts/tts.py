@@ -7,6 +7,9 @@ import soundfile as sf
 import os
 from os.path import join
 from voice import select_voice
+import queue
+import threading
+import time
 
 
 def get_wav_duration(file_path):
@@ -47,22 +50,83 @@ def tts(config, payload, npc_id, full_name):
 
         run_piper(payload, voice["model"], voice["language"], voice["speaker"], piper_wav_file)
 
-        wav_file = piper_wav_file
-
         # Voicefixer
         if "voicefixer" in config:
-            print("[i] Applying voicefixer ...")
-            import time
-            start = time.time()
-            wav_file = join(temp_dir, "voicefixer.wav")
-            config["voicefixer"].restore(input=piper_wav_file, output=wav_file, cuda=False, mode=0)
-            end = time.time()
-            print("[i] Applying voicefixer ...", "took", end - start)
+            if config["tts"]["voiceFixerEnableSplitting"]:
+                tts_voicefixer_splitting(config, piper_wav_file, temp_dir)
+            else:
+                tts_voicefixer_whole(config, piper_wav_file, temp_dir)
+        else:
+            # Playback of the original inference
+            wav_data, sample_rate = sf.read(piper_wav_file)
+            sd.play(wav_data * config["volume"], samplerate=sample_rate, blocking=True)
 
-        # Playback
-        wav_data, sample_rate = sf.read(wav_file)
 
-        sd.play(wav_data, samplerate=sample_rate, blocking=True)
+def tts_voicefixer_splitting(config, piper_wav_file, temp_dir):
+    print("[i] Applying voicefixer (splitting) ...")
+
+    from pydub import AudioSegment
+    from pydub.silence import split_on_silence
+
+    audio = AudioSegment.from_wav(piper_wav_file)
+    audio.export("audio.wav", format="wav")
+    segments = split_on_silence(audio,
+                                min_silence_len=config["tts"]["voiceFixerSplittingSilenceDuration"],
+                                silence_thresh=config["tts"]["voiceFixerSplittingSilenceThreshold"])
+    print("[i] --> Found", len(segments), "segments")
+
+    def process_sentences(segments, audio_queue):
+        for i, segment in enumerate(segments):
+            print("[i] voicefixer segment", i)
+            input_wav = join(temp_dir, f"i_segment_{i}.wav")
+            output_wav = join(temp_dir, f"o_segment_{i}.wav")
+            silence_chunk = AudioSegment.silent(duration=100)
+            padded = silence_chunk + segment + silence_chunk
+            padded.export(input_wav, format="wav")
+
+            padded.export(f"i_segment_{i}.wav", format="wav")
+
+            config["voicefixer"].restore(input=input_wav, output=output_wav, cuda=False, mode=0)
+
+            audio_queue.put(output_wav)
+        audio_queue.put(None)
+
+    def play_audio(audio_queue):
+        while True:
+            if not audio_queue.empty():
+                wav_file = audio_queue.get()
+
+                # Break condition
+                if wav_file is None:
+                    break
+
+                wav_data, sample_rate = sf.read(wav_file)
+                sd.play(wav_data * config["volume"], samplerate=sample_rate, blocking=True)
+            else:
+                time.sleep(0.1)  # Sleep briefly to avoid busy waiting
+
+    audio_queue = queue.Queue()
+    processing_thread = threading.Thread(target=process_sentences, args=(segments, audio_queue))
+    processing_thread.start()
+
+    audio_thread = threading.Thread(target=play_audio, args=(audio_queue,))
+    audio_thread.start()
+
+    # Wait for the processing thread to finish
+    processing_thread.join()
+    audio_thread.join()
+
+def tts_voicefixer_whole(config, piper_wav_file, temp_dir):
+    print("[i] Applying voicefixer (whole audio) ...")
+    import time
+    start = time.time()
+    wav_file = join(temp_dir, "voicefixer.wav")
+    config["voicefixer"].restore(input=piper_wav_file, output=wav_file, cuda=False, mode=0)
+    end = time.time()
+    print("[i] Applying voicefixer ...", "took", end - start)
+    # Playback of the original inference
+    wav_data, sample_rate = sf.read(piper_wav_file)
+    sd.play(wav_data * config["volume"], samplerate=sample_rate, blocking=True)
 
 
 def tts_init(config):
@@ -71,4 +135,3 @@ def tts_init(config):
         print("[i] Initializing voicefixer ...")
         config["voicefixer"] = voicefixer.VoiceFixer()
         print("[i] Initializing voicefixer ... done")
-

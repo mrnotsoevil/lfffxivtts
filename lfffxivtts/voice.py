@@ -1,4 +1,5 @@
 import re
+import random
 
 
 def select_voice(config, npc_id, full_name):
@@ -57,6 +58,12 @@ def select_voice(config, npc_id, full_name):
         if voice["gender"] == full_name:
             print("[w] Using gender fallback voice", full_name, voice["name"])
             return voice
+
+    # Select any (CLI)
+    if npc_id == "any":
+        voice = random.choice(config["voices"][lang])
+        print("[i] Selecting random voice", voice["name"])
+        return voice
 
     # Fallback voice
     if config["voices"][lang]:

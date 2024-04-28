@@ -1,6 +1,10 @@
 {
   "language": "en",
+  "volume": 0.5,
   "tts": {
-    "enableVoiceFixer": false
+    "enableVoiceFixer": true,
+    "voiceFixerEnableSplitting": true,
+    "voiceFixerSplittingSilenceThreshold": -40,
+    "voiceFixerSplittingSilenceDuration": 200
   }
 }
