@@ -139,7 +139,7 @@ class MainFrame(wx.Frame):
 
     def on_toggle_tts(self, event):
         print("[>] tts enabled =", self.checkbox_enable_tts.GetValue())
-        self.config["tts"]["enable"] = self.checkbox_enable_tts.GetValue()
+        self.config["enable"] = self.checkbox_enable_tts.GetValue()
         write_config(self.config)
 
     def on_show(self, event):
