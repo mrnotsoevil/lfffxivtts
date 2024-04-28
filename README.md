@@ -29,6 +29,8 @@ The TTS tool should automatically connect to the Dalamud plugin within a few sec
 Please give the TTS a few seconds to generate the audio. You can turn off noisereduce if you want 
 a bit more performance (not much).
 
+![TextToTalk settings](https://github.com/mrnotsoevil/lfffxivtts/blob/master/dev/screenshot_plugin.png?raw=true)
+
 ## Setup (Development)
 
 This will require Python 3.10, various dependencies, and a special piper version with support for 
