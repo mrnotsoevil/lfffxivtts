@@ -7,6 +7,7 @@ import tempfile
 import threading
 import time
 from os.path import join
+import numpy as np
 
 import sounddevice as sd
 import soundfile as sf
@@ -31,7 +32,6 @@ def run_piper(config, payload, model, language, speaker, temp_dir, file_name_tem
     voice = PiperVoice.load(model_file, config_path=config_file, use_cuda=False)
 
     phonemes = voice.phonemize(payload)
-    output_files = []
     # with wave.open(wav_file, "wb") as wav_file:
 
     # wav_file.setframerate(model_config["audio"]["sample_rate"])
@@ -42,6 +42,8 @@ def run_piper(config, payload, model, language, speaker, temp_dir, file_name_tem
         min_phoneme_count = voice_config["minPhonemeCount"] if "minPhonemeCount" in voice_config else 0
         noise_scale = None
 
+        if len(sentence_) <= 0:
+            continue
         if len(sentence_) >= min_phoneme_count:
             sentence = sentence_
             n_repetitions = 1
@@ -80,15 +82,7 @@ def run_piper(config, payload, model, language, speaker, temp_dir, file_name_tem
             new_segment = segment + AudioSegment.silent(duration=150)
             new_segment.export(wav_file, format="wav")
 
-        output_files.append(wav_file)
-
-    return output_files
-
-
-def get_wav_duration(file_path):
-    with sf.SoundFile(file_path, 'r') as f:
-        duration = len(f) / f.samplerate
-    return duration
+        yield wav_file
 
 
 def tts(config, payload, npc_id, full_name):
@@ -99,77 +93,72 @@ def tts(config, payload, npc_id, full_name):
         return
 
     with tempfile.TemporaryDirectory() as temp_dir:
-        piper_wav_file = join(temp_dir, "piper.wav")
+        def generate_audio(audio_queue):
+            piper_generator = run_piper(config, payload, voice["model"], voice["language"],
+                                        voice["speaker"], temp_dir, "piper")
+            for index, piper_wav_file in enumerate(piper_generator):
+                print("[i] Received sentence", index, "-->", piper_wav_file)
+                output_wav = piper_wav_file
 
-        piper_wav_files = run_piper(config, payload, voice["model"], voice["language"],
-                                    voice["speaker"], temp_dir, "piper")
+                if config["tts"]["enableNoiseReduce"]:
+                    try:
+                        import noisereduce as nr
+                        audio = AudioSegment.from_file(output_wav)
+                        samples = np.array(audio.get_array_of_samples())
 
-        # Voicefixer
-        if "voicefixer" in config:
-            if config["tts"]["voiceFixerEnableSplitting"]:
-                tts_voicefixer_splitting(config, piper_wav_file, temp_dir)
-            else:
-                tts_voicefixer_whole(config, piper_wav_file, temp_dir)
-        else:
-            # Playback of the original inference
-            for wav_file in piper_wav_files:
-                wav_data, sample_rate = sf.read(wav_file)
-                sd.play(wav_data * config["volume"], samplerate=sample_rate, blocking=True)
+                        reduced_noise = nr.reduce_noise(y=samples, sr=audio.frame_rate,
+                                                        prop_decrease=config["tts"]["noiseReduceFactor"])
+                        segment = AudioSegment(reduced_noise.tobytes(), frame_rate=audio.frame_rate,
+                                               sample_width=audio.sample_width,
+                                               channels=audio.channels)
 
+                        output_wav = join(temp_dir, f"noisereduce_output_{index}.wav")
+                        segment.export(output_wav, format="wav")
+                    except Exception as e:
+                        print("[!] Error during noise reduction", e)
 
-def tts_voicefixer_splitting(config, piper_wav_file, temp_dir):
-    print("[i] Applying voicefixer (splitting) ...")
+                if config["tts"]["enableVoiceFixer"] and "voicefixer" in config:
+                    try:
+                        input_wav = output_wav
+                        voicefixer_input_wav = join(temp_dir, f"voicefixer_input_{index}.wav")
+                        voicefixer_output_wav = join(temp_dir, f"voicefixer_output_{index}.wav")
+                        silence_chunk = AudioSegment.silent(duration=100)
+                        segment = AudioSegment.from_wav(input_wav)
+                        (silence_chunk + segment + silence_chunk).export(voicefixer_input_wav, format="wav")
+                        config["voicefixer"].restore(input=voicefixer_input_wav, output=voicefixer_output_wav, cuda=False,
+                                                     mode=0)
 
-    from pydub import AudioSegment
-    from pydub.silence import split_on_silence
+                        output_wav = voicefixer_output_wav
+                    except Exception as e:
+                        print("[!] Error during voicefixer", e)
 
-    audio = AudioSegment.from_wav(piper_wav_file)
-    audio.export("audio.wav", format="wav")
-    segments = split_on_silence(audio,
-                                min_silence_len=config["tts"]["voiceFixerSplittingSilenceDuration"],
-                                silence_thresh=config["tts"]["voiceFixerSplittingSilenceThreshold"])
-    print("[i] --> Found", len(segments), "segments")
+                audio_queue.put(output_wav)
+            audio_queue.put(None)
 
-    def process_sentences(segments, audio_queue):
-        for i, segment in enumerate(segments):
-            print("[i] voicefixer segment", i)
-            input_wav = join(temp_dir, f"i_segment_{i}.wav")
-            output_wav = join(temp_dir, f"o_segment_{i}.wav")
-            silence_chunk = AudioSegment.silent(duration=100)
-            padded = silence_chunk + segment + silence_chunk
-            padded.export(input_wav, format="wav")
+        def play_audio(audio_queue):
+            while True:
+                if not audio_queue.empty():
+                    wav_file = audio_queue.get()
 
-            padded.export(f"i_segment_{i}.wav", format="wav")
+                    # Break condition
+                    if wav_file is None:
+                        break
 
-            config["voicefixer"].restore(input=input_wav, output=output_wav, cuda=False, mode=0)
+                    wav_data, sample_rate = sf.read(wav_file)
+                    sd.play(wav_data * config["volume"], samplerate=sample_rate, blocking=True)
+                else:
+                    time.sleep(0.1)  # Sleep briefly to avoid busy waiting
 
-            audio_queue.put(output_wav)
-        audio_queue.put(None)
+        audio_queue = queue.Queue()
+        generate_thread = threading.Thread(target=generate_audio, args=(audio_queue,))
+        generate_thread.start()
 
-    def play_audio(audio_queue):
-        while True:
-            if not audio_queue.empty():
-                wav_file = audio_queue.get()
+        audio_thread = threading.Thread(target=play_audio, args=(audio_queue,))
+        audio_thread.start()
 
-                # Break condition
-                if wav_file is None:
-                    break
-
-                wav_data, sample_rate = sf.read(wav_file)
-                sd.play(wav_data * config["volume"], samplerate=sample_rate, blocking=True)
-            else:
-                time.sleep(0.1)  # Sleep briefly to avoid busy waiting
-
-    audio_queue = queue.Queue()
-    processing_thread = threading.Thread(target=process_sentences, args=(segments, audio_queue))
-    processing_thread.start()
-
-    audio_thread = threading.Thread(target=play_audio, args=(audio_queue,))
-    audio_thread.start()
-
-    # Wait for the processing thread to finish
-    processing_thread.join()
-    audio_thread.join()
+        # Wait for the processing thread to finish
+        generate_thread.join()
+        audio_thread.join()
 
 
 def tts_voicefixer_whole(config, piper_wav_file, temp_dir):

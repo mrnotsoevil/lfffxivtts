@@ -218,10 +218,10 @@
             "speaker": "30"
         },
         {
-            "name": "mls_de_31_male",
+            "name": "mls_de_31_female",
             "model": "mls",
             "language": "de",
-            "gender": "male",
+            "gender": "female",
             "speaker": "31"
         },
         {
@@ -1310,17 +1310,17 @@
             "speaker": "186"
         },
         {
-            "name": "mls_de_187_female",
-            "model": "mls",
-            "language": "de",
-            "gender": "female",
-            "speaker": "187"
-        },
-        {
-            "name": "mls_de_188_male",
+            "name": "mls_de_187_male",
             "model": "mls",
             "language": "de",
             "gender": "male",
+            "speaker": "187"
+        },
+        {
+            "name": "mls_de_188_female",
+            "model": "mls",
+            "language": "de",
+            "gender": "female",
             "speaker": "188"
         },
         {
@@ -1632,10 +1632,10 @@
             "speaker": "232"
         },
         {
-            "name": "mls_de_233_female",
+            "name": "mls_de_233_male",
             "model": "mls",
             "language": "de",
-            "gender": "female",
+            "gender": "male",
             "speaker": "233"
         },
         {
@@ -2180,10 +2180,10 @@
             "speaker": "74"
         },
         {
-            "name": "vctk_en_75_female",
+            "name": "vctk_en_75_male",
             "model": "vctk",
             "language": "en",
-            "gender": "female",
+            "gender": "male",
             "speaker": "75"
         },
         {

@@ -326,7 +326,7 @@
             "de": {
                 "model": "mls",
                 "language": "de",
-                "speaker": "234"
+                "speaker": "187"
             },
             "en": {
                 "model": "vctk",
@@ -342,7 +342,7 @@
             "de": {
                 "model": "mls",
                 "language": "de",
-                "speaker": "188"
+                "speaker": "96"
             },
             "en": {
                 "model": "vctk",
@@ -588,6 +588,22 @@
                 "model": "vctk",
                 "language": "en",
                 "speaker": "82"
+            }
+        }
+    },
+    "ardbert2": {
+        "name": "ardbert2",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "91"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "97"
             }
         }
     },
@@ -1126,7 +1142,7 @@
             "de": {
                 "model": "mls",
                 "language": "de",
-                "speaker": "91"
+                "speaker": "139"
             },
             "en": {
                 "model": "vctk",
