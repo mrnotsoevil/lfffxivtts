@@ -11,3 +11,14 @@ Supports [noisereduce](https://pypi.org/project/noisereduce/) and [voicefixer](h
 to improve the generated TTS output. (voicefixer is turned off by default due to the computational cost).
 
 **Runs fully on CPU, meaning that you do not need a high-end GPU.** 
+
+## Setup (Development)
+
+This will require Python 3.10, various dependencies, and a special piper version with support for 
+custom phonemes.
+
+* Python 3.10
+* `pip install sounddevice websockets aioconsole voicefixer pydub`
+* `mkdir tmp && cd tmp && git clone https://github.com/mrnotsoevil/piper.git`
+* `pip install tmp/piper/src/python_run/`
+
