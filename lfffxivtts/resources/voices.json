@@ -2417,5 +2417,882 @@
             "gender": "female",
             "speaker": "108"
         }
+    ],
+    "fr": [
+        {
+            "name": "mls_fr_0_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "0"
+        },
+        {
+            "name": "mls_fr_1_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "1"
+        },
+        {
+            "name": "mls_fr_2_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "2"
+        },
+        {
+            "name": "mls_fr_3_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "3"
+        },
+        {
+            "name": "mls_fr_4_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "4"
+        },
+        {
+            "name": "mls_fr_5_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "5"
+        },
+        {
+            "name": "mls_fr_6_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "6"
+        },
+        {
+            "name": "mls_fr_7_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "7"
+        },
+        {
+            "name": "mls_fr_8_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "8"
+        },
+        {
+            "name": "mls_fr_9_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "9"
+        },
+        {
+            "name": "mls_fr_10_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "10"
+        },
+        {
+            "name": "mls_fr_11_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "11"
+        },
+        {
+            "name": "mls_fr_12_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "12"
+        },
+        {
+            "name": "mls_fr_13_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "13"
+        },
+        {
+            "name": "mls_fr_14_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "14"
+        },
+        {
+            "name": "mls_fr_15_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "15"
+        },
+        {
+            "name": "mls_fr_16_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "16"
+        },
+        {
+            "name": "mls_fr_17_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "17"
+        },
+        {
+            "name": "mls_fr_18_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "18"
+        },
+        {
+            "name": "mls_fr_19_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "19"
+        },
+        {
+            "name": "mls_fr_20_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "20"
+        },
+        {
+            "name": "mls_fr_21_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "21"
+        },
+        {
+            "name": "mls_fr_22_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "22"
+        },
+        {
+            "name": "mls_fr_23_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "23"
+        },
+        {
+            "name": "mls_fr_24_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "24"
+        },
+        {
+            "name": "mls_fr_25_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "25"
+        },
+        {
+            "name": "mls_fr_26_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "26"
+        },
+        {
+            "name": "mls_fr_27_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "27"
+        },
+        {
+            "name": "mls_fr_28_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "28"
+        },
+        {
+            "name": "mls_fr_29_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "29"
+        },
+        {
+            "name": "mls_fr_30_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "30"
+        },
+        {
+            "name": "mls_fr_31_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "31"
+        },
+        {
+            "name": "mls_fr_32_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "32"
+        },
+        {
+            "name": "mls_fr_33_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "33"
+        },
+        {
+            "name": "mls_fr_34_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "34"
+        },
+        {
+            "name": "mls_fr_35_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "35"
+        },
+        {
+            "name": "mls_fr_36_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "36"
+        },
+        {
+            "name": "mls_fr_37_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "37"
+        },
+        {
+            "name": "mls_fr_38_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "38"
+        },
+        {
+            "name": "mls_fr_39_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "39"
+        },
+        {
+            "name": "mls_fr_40_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "40"
+        },
+        {
+            "name": "mls_fr_41_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "41"
+        },
+        {
+            "name": "mls_fr_42_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "42"
+        },
+        {
+            "name": "mls_fr_43_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "43"
+        },
+        {
+            "name": "mls_fr_44_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "44"
+        },
+        {
+            "name": "mls_fr_45_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "45"
+        },
+        {
+            "name": "mls_fr_46_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "46"
+        },
+        {
+            "name": "mls_fr_47_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "47"
+        },
+        {
+            "name": "mls_fr_48_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "48"
+        },
+        {
+            "name": "mls_fr_49_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "49"
+        },
+        {
+            "name": "mls_fr_50_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "50"
+        },
+        {
+            "name": "mls_fr_51_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "51"
+        },
+        {
+            "name": "mls_fr_52_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "52"
+        },
+        {
+            "name": "mls_fr_53_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "53"
+        },
+        {
+            "name": "mls_fr_54_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "54"
+        },
+        {
+            "name": "mls_fr_55_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "55"
+        },
+        {
+            "name": "mls_fr_56_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "56"
+        },
+        {
+            "name": "mls_fr_57_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "57"
+        },
+        {
+            "name": "mls_fr_58_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "58"
+        },
+        {
+            "name": "mls_fr_59_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "59"
+        },
+        {
+            "name": "mls_fr_60_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "60"
+        },
+        {
+            "name": "mls_fr_61_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "61"
+        },
+        {
+            "name": "mls_fr_62_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "62"
+        },
+        {
+            "name": "mls_fr_63_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "63"
+        },
+        {
+            "name": "mls_fr_64_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "64"
+        },
+        {
+            "name": "mls_fr_65_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "65"
+        },
+        {
+            "name": "mls_fr_66_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "66"
+        },
+        {
+            "name": "mls_fr_67_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "67"
+        },
+        {
+            "name": "mls_fr_68_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "68"
+        },
+        {
+            "name": "mls_fr_69_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "69"
+        },
+        {
+            "name": "mls_fr_70_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "70"
+        },
+        {
+            "name": "mls_fr_71_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "71"
+        },
+        {
+            "name": "mls_fr_72_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "72"
+        },
+        {
+            "name": "mls_fr_73_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "73"
+        },
+        {
+            "name": "mls_fr_74_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "74"
+        },
+        {
+            "name": "mls_fr_75_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "75"
+        },
+        {
+            "name": "mls_fr_76_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "76"
+        },
+        {
+            "name": "mls_fr_77_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "77"
+        },
+        {
+            "name": "mls_fr_78_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "78"
+        },
+        {
+            "name": "mls_fr_79_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "79"
+        },
+        {
+            "name": "mls_fr_80_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "80"
+        },
+        {
+            "name": "mls_fr_81_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "81"
+        },
+        {
+            "name": "mls_fr_82_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "82"
+        },
+        {
+            "name": "mls_fr_83_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "83"
+        },
+        {
+            "name": "mls_fr_84_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "84"
+        },
+        {
+            "name": "mls_fr_85_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "85"
+        },
+        {
+            "name": "mls_fr_86_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "86"
+        },
+        {
+            "name": "mls_fr_87_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "87"
+        },
+        {
+            "name": "mls_fr_88_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "88"
+        },
+        {
+            "name": "mls_fr_89_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "89"
+        },
+        {
+            "name": "mls_fr_90_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "90"
+        },
+        {
+            "name": "mls_fr_91_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "91"
+        },
+        {
+            "name": "mls_fr_92_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "92"
+        },
+        {
+            "name": "mls_fr_93_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "93"
+        },
+        {
+            "name": "mls_fr_94_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "94"
+        },
+        {
+            "name": "mls_fr_95_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "95"
+        },
+        {
+            "name": "mls_fr_96_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "96"
+        },
+        {
+            "name": "mls_fr_97_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "97"
+        },
+        {
+            "name": "mls_fr_98_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "98"
+        },
+        {
+            "name": "mls_fr_99_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "99"
+        },
+        {
+            "name": "mls_fr_100_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "100"
+        },
+        {
+            "name": "mls_fr_101_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "101"
+        },
+        {
+            "name": "mls_fr_102_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "102"
+        },
+        {
+            "name": "mls_fr_103_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "103"
+        },
+        {
+            "name": "mls_fr_104_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "104"
+        },
+        {
+            "name": "mls_fr_105_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "105"
+        },
+        {
+            "name": "mls_fr_106_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "106"
+        },
+        {
+            "name": "mls_fr_107_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "107"
+        },
+        {
+            "name": "mls_fr_108_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "108"
+        },
+        {
+            "name": "mls_fr_109_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "109"
+        },
+        {
+            "name": "mls_fr_110_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "110"
+        },
+        {
+            "name": "mls_fr_111_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "111"
+        },
+        {
+            "name": "mls_fr_112_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "112"
+        },
+        {
+            "name": "mls_fr_113_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "113"
+        },
+        {
+            "name": "mls_fr_114_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "114"
+        },
+        {
+            "name": "mls_fr_115_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "115"
+        },
+        {
+            "name": "mls_fr_116_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "116"
+        },
+        {
+            "name": "mls_fr_117_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "117"
+        },
+        {
+            "name": "mls_fr_118_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "118"
+        },
+        {
+            "name": "mls_fr_119_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "119"
+        },
+        {
+            "name": "mls_fr_120_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "120"
+        },
+        {
+            "name": "mls_fr_121_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "121"
+        },
+        {
+            "name": "mls_fr_122_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "122"
+        },
+        {
+            "name": "mls_fr_123_male",
+            "model": "mls",
+            "language": "fr",
+            "gender": "male",
+            "speaker": "123"
+        },
+        {
+            "name": "mls_fr_124_female",
+            "model": "mls",
+            "language": "fr",
+            "gender": "female",
+            "speaker": "124"
+        }
     ]
 }
