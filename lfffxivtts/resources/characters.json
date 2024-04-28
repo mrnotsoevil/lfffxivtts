@@ -1,0 +1,1218 @@
+{
+    "ilbert": {
+        "name": "ilbert",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "60"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "81"
+            }
+        }
+    },
+    "venat": {
+        "name": "venat",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "200"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "74"
+            }
+        }
+    },
+    "minfilia2": {
+        "name": "minfilia2",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "66"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "100"
+            }
+        }
+    },
+    "nero": {
+        "name": "nero",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "116"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "62"
+            }
+        }
+    },
+    "soroban": {
+        "name": "soroban",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "53"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "10"
+            }
+        }
+    },
+    "magnai": {
+        "name": "magnai",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "53"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "hythlodaeus": {
+        "name": "hythlodaeus",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "0"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "hermes": {
+        "name": "hermes",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "1"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "thordan": {
+        "name": "thordan",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "55"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "yda": {
+        "name": "yda",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "98"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "74"
+            }
+        }
+    },
+    "tataru": {
+        "name": "tataru",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "230"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "31"
+            }
+        }
+    },
+    "emet": {
+        "name": "emet",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "168"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "4"
+            }
+        }
+    },
+    "louisoix": {
+        "name": "louisoix",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "122"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "lucia": {
+        "name": "lucia",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "162"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "101"
+            }
+        }
+    },
+    "feoul": {
+        "name": "feoul",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "136"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "90"
+            }
+        }
+    },
+    "edmont": {
+        "name": "edmont",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "53"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "alisaie": {
+        "name": "alisaie",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "33"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "101"
+            }
+        }
+    },
+    "livingway": {
+        "name": "livingway",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "66"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "100"
+            }
+        }
+    },
+    "fandaniel": {
+        "name": "fandaniel",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "1"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "hraesvelgr": {
+        "name": "hraesvelgr",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "53"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "10"
+            }
+        }
+    },
+    "jullus": {
+        "name": "jullus",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "234"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "10"
+            }
+        }
+    },
+    "ranjit": {
+        "name": "ranjit",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "188"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "61"
+            }
+        }
+    },
+    "nidhogg": {
+        "name": "nidhogg",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "0"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "yotsuyu": {
+        "name": "yotsuyu",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "184"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "41"
+            }
+        }
+    },
+    "aymeric": {
+        "name": "aymeric",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "121"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "19"
+            }
+        }
+    },
+    "raubahn": {
+        "name": "raubahn",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "212"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "kan": {
+        "name": "kan",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "180"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "100"
+            }
+        }
+    },
+    "paplymo": {
+        "name": "paplymo",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "191"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "81"
+            }
+        }
+    },
+    "haurchefant": {
+        "name": "haurchefant",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "55"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "yshtola": {
+        "name": "yshtola",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "107"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "100"
+            }
+        }
+    },
+    "chainuzz": {
+        "name": "chainuzz",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "45"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "10"
+            }
+        }
+    },
+    "minfilia": {
+        "name": "minfilia",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "66"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "101"
+            }
+        }
+    },
+    "ameliance": {
+        "name": "ameliance",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "98"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "74"
+            }
+        }
+    },
+    "crystal": {
+        "name": "crystal",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "121"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "102"
+            }
+        }
+    },
+    "krile": {
+        "name": "krile",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "19"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "100"
+            }
+        }
+    },
+    "sadu": {
+        "name": "sadu",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "129"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "101"
+            }
+        }
+    },
+    "erenville": {
+        "name": "erenville",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "141"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "82"
+            }
+        }
+    },
+    "thancred": {
+        "name": "thancred",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "203"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "10"
+            }
+        }
+    },
+    "ahewann": {
+        "name": "ahewann",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "0"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "hien": {
+        "name": "hien",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "121"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "meteion": {
+        "name": "meteion",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "162"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "101"
+            }
+        }
+    },
+    "hancock": {
+        "name": "hancock",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "1"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "97"
+            }
+        }
+    },
+    "elidibus": {
+        "name": "elidibus",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "0"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "106"
+            }
+        }
+    },
+    "runar": {
+        "name": "runar",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "1"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "montichaigne": {
+        "name": "montichaigne",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "53"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "varis": {
+        "name": "varis",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "1"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "97"
+            }
+        }
+    },
+    "nanamo": {
+        "name": "nanamo",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "211"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "33"
+            }
+        }
+    },
+    "emetselch": {
+        "name": "emetselch",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "168"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "4"
+            }
+        }
+    },
+    "vidofnir": {
+        "name": "vidofnir",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "54"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "101"
+            }
+        }
+    },
+    "maxima": {
+        "name": "maxima",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "22"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "69"
+            }
+        }
+    },
+    "ysayle": {
+        "name": "ysayle",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "66"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "101"
+            }
+        }
+    },
+    "cid": {
+        "name": "cid",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "158"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "cirina": {
+        "name": "cirina",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "230"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "90"
+            }
+        }
+    },
+    "ryne": {
+        "name": "ryne",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "66"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "66"
+            }
+        }
+    },
+    "urianger": {
+        "name": "urianger",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "139"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "alphinaud": {
+        "name": "alphinaud",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "55"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "gosetsu": {
+        "name": "gosetsu",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "122"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "10"
+            }
+        }
+    },
+    "yugiri": {
+        "name": "yugiri",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "10"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "101"
+            }
+        }
+    },
+    "zenos": {
+        "name": "zenos",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "0"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "merlwyb": {
+        "name": "merlwyb",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "33"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "74"
+            }
+        }
+    },
+    "asahi": {
+        "name": "asahi",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "1"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "emmanellain": {
+        "name": "emmanellain",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "158"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "102"
+            }
+        }
+    },
+    "sicard": {
+        "name": "sicard",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "1"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "10"
+            }
+        }
+    },
+    "vrtra": {
+        "name": "vrtra",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "0"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "106"
+            }
+        }
+    },
+    "fordola": {
+        "name": "fordola",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "38"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "89"
+            }
+        }
+    },
+    "fourchenault": {
+        "name": "fourchenault",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "1"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "varshahn": {
+        "name": "varshahn",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "55"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "nidhana": {
+        "name": "nidhana",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "151"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "100"
+            }
+        }
+    },
+    "vauthry": {
+        "name": "vauthry",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "55"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "93"
+            }
+        }
+    },
+    "graha": {
+        "name": "graha",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "121"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "102"
+            }
+        }
+    },
+    "ardbert": {
+        "name": "ardbert",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "91"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "97"
+            }
+        }
+    },
+    "pipin": {
+        "name": "pipin",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "105"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "81"
+            }
+        }
+    },
+    "lyse": {
+        "name": "lyse",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "98"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "74"
+            }
+        }
+    },
+    "moenbryda": {
+        "name": "moenbryda",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "200"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "100"
+            }
+        }
+    },
+    "estinien": {
+        "name": "estinien",
+        "gender": "male",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "1"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "62"
+            }
+        }
+    },
+    "lyna": {
+        "name": "lyna",
+        "gender": "female",
+        "tts": {
+            "de": {
+                "model": "mls",
+                "language": "de",
+                "speaker": "48"
+            },
+            "en": {
+                "model": "vctk",
+                "language": "en",
+                "speaker": "33"
+            }
+        }
+    }
+}
