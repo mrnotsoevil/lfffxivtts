@@ -52,3 +52,15 @@ def read_config():
     print("[i] Configuration loaded")
 
     return config
+
+
+def write_config(config):
+    copy = {
+        "language": config["language"],
+        "volume": config["volume"],
+        "enable": config["enable"],
+        "websocketURI": config["websocketURI"],
+        "tts": config["tts"]
+    }
+    with open("config.json", "w") as f:
+        json.dump(copy, f, indent=4)

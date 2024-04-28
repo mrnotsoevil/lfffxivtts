@@ -18,7 +18,7 @@ This will require Python 3.10, various dependencies, and a special piper version
 custom phonemes.
 
 * Python 3.10
-* `pip install sounddevice websockets aioconsole voicefixer pydub`
+* `pip install sounddevice websockets aioconsole voicefixer pydub wxwidgets`
 * `mkdir tmp && cd tmp && git clone https://github.com/mrnotsoevil/piper.git`
 * `pip install tmp/piper/src/python_run/`
 

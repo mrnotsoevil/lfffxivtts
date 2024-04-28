@@ -52,6 +52,7 @@ def select_voice(config, npc_id, full_name):
                 npc_id = hash(full_name)
                 voice = available_voices[int(npc_id) % len(available_voices)]
                 print("[i] Selecting NPC voice via gender list", "-->", gender)
+                return voice
 
     # Fallback by gender (CLI)
     for voice in config["voices"][lang]:

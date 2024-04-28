@@ -1,15 +1,17 @@
 {
-  "language": "en",
-  "volume": 0.5,
-  "tts": {
-    "enableVoiceFixer": false,
-    "enableNoiseReduce": true,
-    "noiseReduceFactor": 0.5,
-    "modelConfig": {
-      "mls_de": {
-        "minPhonemeCount": 80,
-        "phonemeCountFixNoiseScale": 0.333
-      }
+    "language": "en",
+    "volume": 0.47,
+    "enable": true,
+    "websocketURI": "ws://localhost:8081/Messages",
+    "tts": {
+        "enableVoiceFixer": true,
+        "enableNoiseReduce": true,
+        "noiseReduceFactor": 0.5,
+        "modelConfig": {
+            "mls_de": {
+                "minPhonemeCount": 80,
+                "phonemeCountFixNoiseScale": 0.333
+            }
+        }
     }
-  }
 }

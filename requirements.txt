@@ -155,5 +155,9 @@ urllib3 @ file:///croot/urllib3_1707770551213/work
 voicefixer==0.1.3
 watchdog==4.0.0
 wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
+webcolors==1.13
 webencodings==0.5.1
 websocket-client @ file:///home/builder/ci_310/websocket-client_1640795866898/work
+websockets==12.0
+wxPython==4.2.1
+wxwidgets==1.0.5
