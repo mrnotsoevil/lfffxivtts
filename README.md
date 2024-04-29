@@ -9,10 +9,6 @@ Uses the [Piper](https://github.com/rhasspy/piper) project to rapidly generate T
 **This software does not do voice cloning of existing FFXIV characters.** Instead, voices were provided by the
 TTS software were matched as close as possible to some characters.
 
-Supports [noisereduce](https://pypi.org/project/noisereduce/) and [voicefixer](https://github.com/haoheliu/voicefixer)
-to improve the generated TTS output. (voicefixer is turned off by default due to the computational cost and
-multiprocessing issues).
-
 **Runs fully on CPU, meaning that you do not need a high-end GPU.**
 
 **Current support**
@@ -31,7 +27,8 @@ A list of voice samples can be found [here](https://rhasspy.github.io/piper-samp
 Download the package and extract it.
 
 * Windows: Double-click the `start.bat` file
-* Linux/macos: No package ready yet, sorry (use the dev environment and run the main.py)
+* Linux: Double-click the `start.sh` file
+* macos: No package ready yet, sorry (I have no mac; use the dev environment and run the main.py)
 
 In the TextToTalk plugin, choose the **Websocket** backend and
 set the port to 8081 (default for this tool).
