@@ -50,8 +50,77 @@ custom phonemes.
 
 * Python 3.10
 * `pip install sounddevice websockets aioconsole voicefixer pydub wxwidgets noisereduce pyloudnorm`
-* `mkdir tmp && cd tmp && git clone https://github.com/mrnotsoevil/piper.git`
+* `mkdir tmp && cd tmp && git clone https://github.com/mrnotsoevil/piper.git` (we cannot use the current piper version,
+  as it lacks [a feature](https://github.com/rhasspy/piper/pull/403))
 * `pip install tmp/piper/src/python_run/`
+
+### Windows Python environment
+
+* You will need the Visual Studio Build Tools
+* The installation of piper will fail due to a missing `piper-phonemize~1.1.0` (no Windows support)
+
+#### Solution
+
+* Download the [piper-phonemize source code](https://github.com/rhasspy/piper-phonemize/archive/refs/tags/v1.1.0.zip)
+  and extract it
+
+* Adapt into `setup.py` as following
+
+```python
+...
+ext_modules = [
+    Pybind11Extension(
+        "piper_phonemize_cpp",
+        [
+            "src/python.cpp",
+            "src/phonemize.cpp",
+            "src/phoneme_ids.cpp",
+            "src/tashkeel.cpp",
+        ],
+        define_macros=[("VERSION_INFO", __version__)],
+        include_dirs=[str(_ESPEAK_DIR / "include"), str(_ONNXRUNTIME_DIR / "include")],
+        library_dirs=[str(_ESPEAK_DIR / "lib"), str(_ONNXRUNTIME_DIR / "lib")],
+        libraries=["espeak-ng", "onnxruntime"],
+        extra_compile_args=["/utf-8"]  # <<<<<- here
+    ),
+]
+...
+```
+
+* Download the [espeak-ng binaries](https://github.com/rhasspy/espeak-ng/releases/download/2023.9.7-4/windows_amd64.zip)
+  and copy them into `espeak-ng/build` (so that this directory contains bin, include, etc.)
+
+* Download whatever [onnx runtime](https://github.com/microsoft/onnxruntime/releases) was installed by pip and put the
+  files into `lib/Linux-AMD64/onnxruntime` (yes it's hardcoded to Linux in the script)
+
+* Fix the `src/tashkeel.cpp` file:
+
+
+```cpp
+// Add includes
+#include <locale>
+#include <codecvt>
+
+// ~ Line 86
+void tashkeel_load(std::string modelPath, State &state) {
+  state.env = Ort::Env(OrtLoggingLevel::ORT_LOGGING_LEVEL_WARNING,
+                       instanceName.c_str());
+  state.env.DisableTelemetryEvents();
+  state.options.SetExecutionMode(ExecutionMode::ORT_PARALLEL);
+
+  // ---> We need to do a conversion
+  std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+  std::wstring modelPathW = converter.from_bytes(modelPath);
+
+  state.onnx = Ort::Session(state.env, modelPathW.c_str(), state.options);
+}
+
+```
+
+* The pip installs should run fine (but the TTS doesn't work, yet)
+* Download the [piper Windows release](https://github.com/rhasspy/piper/releases)
+* Copy `piper_phonemize.dll` and `espeak-ng.dll` into `<Python>\Lib\site-packages`
+* Copy `espeak-ng-data` into `<Python>\Lib\site-packages\piper-phonemize`
 
 ### Running
 
