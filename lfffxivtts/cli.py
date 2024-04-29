@@ -1,4 +1,4 @@
-from tts import tts, tts_init
+from tts import tts_simple, tts_init
 from config import read_config
 
 def main():
@@ -16,9 +16,9 @@ def main():
             else:
                 print("[!] invalid language. must be any of en, fr, jp, de")
         elif "//" in message:
-            tts(config, message.split("//")[1], message.split("//")[0], message.split("//")[0])
+            tts_simple(config, message.split("//")[1], message.split("//")[0], message.split("//")[0])
         else:
-            tts(config, message, 0, "")
+            tts_simple(config, message, 0, "")
 
 if __name__ == "__main__":
     main()

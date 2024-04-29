@@ -1,5 +1,6 @@
 import re
 import random
+import traceback
 
 
 def select_voice(config, npc_id, full_name):
@@ -11,6 +12,7 @@ def select_voice(config, npc_id, full_name):
     :return: tts voice (dict with model, language, speaker)
     """
     lang = config["language"]
+    npc_id = str(npc_id)
     print("[i] Select voice query", npc_id, "+", full_name)
 
     # Look for a known NPC
@@ -40,6 +42,21 @@ def select_voice(config, npc_id, full_name):
                     print("[i] Selecting by NPC name", npc_id, "name matched to character", char_name)
                     return config["chars"][char_name]["tts"][lang]
 
+    # Use gender associated from NPC db
+    if npc_id and npc_id in config["npcs"]:
+        try:
+            npc = config["npcs"][npc_id]
+            gender = npc["gender"]
+            if gender is not None:
+                available_voices = [voice for voice in config["voices"][lang] if voice["gender"] == gender]
+                id_num = int(npc_id)
+                voice = available_voices[id_num % len(config["voices"][lang])]
+                print("[w] Using NPC gender voice", voice["name"], "for", npc_id)
+                return voice
+        except Exception as e:
+            print("[!] Error at select_voice / 3", e)
+            traceback.print_exc()
+
     # Use the gender list
     if full_name.strip():
         first_name = re.sub(r"[^a-zA-Z ]", "", full_name.split(" ")[0]).lower()
@@ -53,6 +70,19 @@ def select_voice(config, npc_id, full_name):
                 voice = available_voices[int(npc_id) % len(available_voices)]
                 print("[i] Selecting NPC voice via gender list", "-->", gender)
                 return voice
+
+    # Use pattern (from race, based on name)
+    if full_name:
+        for race in ["hyur", "elezen", "lalafell", "miqo'te", "roegadyn", "au ra"]:
+            gender = estimate_gender_by_name(full_name, race)
+            if gender is not None:
+                # Select by ID (filter by gender)
+                available_voices = [voice for voice in config["voices"][lang] if voice["gender"] == gender]
+                npc_id = hash(full_name)
+                voice = available_voices[int(npc_id) % len(available_voices)]
+                print("[i] Selecting voice via gender pattern", "-->", gender, "name", full_name)
+                return voice
+
 
     # Fallback by gender (CLI)
     for voice in config["voices"][lang]:
@@ -81,4 +111,29 @@ def select_voice(config, npc_id, full_name):
         voice = config["voices"][lang][0]
         print("[w] Using fallback voice", voice["name"])
         return voice
+    return None
+
+
+def estimate_gender_by_name(full_name, race):
+    # Dictionary containing patterns for male and female names by race
+    name_patterns = {
+        "hyur": {"male": ["lfric", "ric", "fric"], "female": ["enlil", "lil"]},
+        "elezen": {"male": ["ion", "nre", "dren"], "female": ["thel", "iane", "na"]},
+        "lalafell": {"male": ["dodo", "odo"], "female": ["pepa", "epa"]},
+        "miqo'te": {"male": ["x'rhun", "'rhun"], "female": ["miqo", "qo'te"]},
+        "roegadyn": {"male": ["ff", "nn", "drud"], "female": ["a'to", "to"]},
+        "au ra": {"male": ["iyo", "yo", "so"], "female": ["jorn", "orn", "va"]}
+    }
+
+    # Lowercase the full name for case-insensitive matching
+    full_name_lower = full_name.lower()
+
+    # Check each race for name patterns
+    for race_name, patterns in name_patterns.items():
+        if race_name.lower() in race.lower():
+            for gender, gender_patterns in patterns.items():
+                for pattern in gender_patterns:
+                    if pattern in full_name_lower:
+                        return gender
+    # If no pattern matches, return None
     return None

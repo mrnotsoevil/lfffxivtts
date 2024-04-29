@@ -15,6 +15,8 @@ from pydub import AudioSegment
 
 from voice import select_voice
 
+PIPER_VOICE_CACHE = {}
+
 
 def run_piper(config, payload, model, language, speaker, temp_dir, file_name_template):
     model_file = os.path.abspath("piper/models/" + model + "_" + language + ".onnx")
@@ -27,16 +29,22 @@ def run_piper(config, payload, model, language, speaker, temp_dir, file_name_tem
     with open(config_file, "r", encoding='utf-8') as f:
         model_config = json.load(f)
 
-    from piper import PiperVoice
+    start = time.time()
 
-    voice = PiperVoice.load(model_file, config_path=config_file, use_cuda=False)
+    if model_file in PIPER_VOICE_CACHE:
+        voice = PIPER_VOICE_CACHE[model_file]
+    else:
+        from piper import PiperVoice
+        voice = PiperVoice.load(model_file, config_path=config_file, use_cuda=False)
+        PIPER_VOICE_CACHE[model_file] = voice
 
+    end = time.time()
+    print("[i] TTS model load took", end - start, "seconds")
+
+    start = time.time()
     phonemes = voice.phonemize(payload)
-    # with wave.open(wav_file, "wb") as wav_file:
-
-    # wav_file.setframerate(model_config["audio"]["sample_rate"])
-    # wav_file.setsampwidth(2)  # 16-bit
-    # wav_file.setnchannels(1)  # mono
+    end = time.time()
+    print("[i] TTS phonemes took", end - start, "seconds")
 
     for index, sentence_ in enumerate(phonemes):
         min_phoneme_count = voice_config["minPhonemeCount"] if "minPhonemeCount" in voice_config else 0
@@ -65,6 +73,7 @@ def run_piper(config, payload, model, language, speaker, temp_dir, file_name_tem
         }
         print("[i] TTS >", "".join(sentence))
 
+        start = time.time()
         wav_bytes = b"".join(list(voice.synthesize_stream_raw("".join(sentence), **synthesize_args)))
         if n_repetitions > 1:
             width = int(len(wav_bytes) / n_repetitions)
@@ -82,10 +91,67 @@ def run_piper(config, payload, model, language, speaker, temp_dir, file_name_tem
             new_segment = segment + AudioSegment.silent(duration=150)
             new_segment.export(wav_file, format="wav")
 
+        end = time.time()
+        print("[i] TTS generate sentence", index, "took", end - start, "seconds")
         yield wav_file
 
 
-def tts(config, payload, npc_id, full_name):
+def tts_post_process(config, input_wav, temp_dir, index):
+    output_wav = input_wav
+
+    if config["tts"]["enableNoiseReduce"]:
+        try:
+            import noisereduce as nr
+            audio = AudioSegment.from_file(output_wav)
+            samples = np.array(audio.get_array_of_samples())
+
+            reduced_noise = nr.reduce_noise(y=samples, sr=audio.frame_rate,
+                                            prop_decrease=config["tts"]["noiseReduceFactor"])
+            segment = AudioSegment(reduced_noise.tobytes(), frame_rate=audio.frame_rate,
+                                   sample_width=audio.sample_width,
+                                   channels=audio.channels)
+
+            output_wav = join(temp_dir, f"noisereduce_output_{index}.wav")
+            segment.export(output_wav, format="wav")
+        except Exception as e:
+            print("[!] Error during noise reduction", e)
+
+    # if config["tts"]["enableVoiceFixer"] and "voicefixer" in config:
+    #     try:
+    #         input_wav = output_wav
+    #         voicefixer_input_wav = join(temp_dir, f"voicefixer_input_{index}.wav")
+    #         voicefixer_output_wav = join(temp_dir, f"voicefixer_output_{index}.wav")
+    #         silence_chunk = AudioSegment.silent(duration=100)
+    #         segment = AudioSegment.from_wav(input_wav)
+    #         (silence_chunk + segment + silence_chunk).export(voicefixer_input_wav, format="wav")
+    #         config["voicefixer"].restore(input=voicefixer_input_wav, output=voicefixer_output_wav,
+    #                                      cuda=False,
+    #                                      mode=0)
+    #
+    #         output_wav = voicefixer_output_wav
+    #     except Exception as e:
+    #         print("[!] Error during voicefixer", e)
+
+    if config["tts"]["enableLoudnessNormalization"]:
+        try:
+            import pyloudnorm as pyln
+            input_wav = output_wav
+            output_wav = join(temp_dir, f"normalized_output_{index}.wav")
+            data, rate = sf.read(input_wav)
+            meter = pyln.Meter(rate)  # create BS.1770 meter
+            loudness = meter.integrated_loudness(data)
+            loudness_normalized_audio = pyln.normalize.loudness(data, loudness,
+                                                                config["tts"][
+                                                                    "loudnessNormalizationTarget"])
+            sf.write(output_wav, loudness_normalized_audio, samplerate=rate)
+
+        except Exception as e:
+            print("[!] Error during loudness normalization", e)
+
+    return output_wav
+
+
+def tts_simple(config, payload, npc_id, full_name):
     voice = select_voice(config, npc_id, full_name)
 
     if voice is None:
@@ -98,55 +164,7 @@ def tts(config, payload, npc_id, full_name):
                                         voice["speaker"], temp_dir, "piper")
             for index, piper_wav_file in enumerate(piper_generator):
                 print("[i] Received sentence", index, "-->", piper_wav_file)
-                output_wav = piper_wav_file
-
-                if config["tts"]["enableNoiseReduce"]:
-                    try:
-                        import noisereduce as nr
-                        audio = AudioSegment.from_file(output_wav)
-                        samples = np.array(audio.get_array_of_samples())
-
-                        reduced_noise = nr.reduce_noise(y=samples, sr=audio.frame_rate,
-                                                        prop_decrease=config["tts"]["noiseReduceFactor"])
-                        segment = AudioSegment(reduced_noise.tobytes(), frame_rate=audio.frame_rate,
-                                               sample_width=audio.sample_width,
-                                               channels=audio.channels)
-
-                        output_wav = join(temp_dir, f"noisereduce_output_{index}.wav")
-                        segment.export(output_wav, format="wav")
-                    except Exception as e:
-                        print("[!] Error during noise reduction", e)
-
-                if config["tts"]["enableVoiceFixer"] and "voicefixer" in config:
-                    try:
-                        input_wav = output_wav
-                        voicefixer_input_wav = join(temp_dir, f"voicefixer_input_{index}.wav")
-                        voicefixer_output_wav = join(temp_dir, f"voicefixer_output_{index}.wav")
-                        silence_chunk = AudioSegment.silent(duration=100)
-                        segment = AudioSegment.from_wav(input_wav)
-                        (silence_chunk + segment + silence_chunk).export(voicefixer_input_wav, format="wav")
-                        config["voicefixer"].restore(input=voicefixer_input_wav, output=voicefixer_output_wav, cuda=False,
-                                                     mode=0)
-
-                        output_wav = voicefixer_output_wav
-                    except Exception as e:
-                        print("[!] Error during voicefixer", e)
-
-                if config["tts"]["enableLoudnessNormalization"]:
-                    try:
-                        import pyloudnorm as pyln
-                        input_wav = output_wav
-                        output_wav = join(temp_dir, f"normalized_output_{index}.wav")
-                        data, rate = sf.read(input_wav)
-                        meter = pyln.Meter(rate)  # create BS.1770 meter
-                        loudness = meter.integrated_loudness(data)
-                        loudness_normalized_audio = pyln.normalize.loudness(data, loudness,
-                                                                            config["tts"]["loudnessNormalizationTarget"])
-                        sf.write(output_wav, loudness_normalized_audio, samplerate=rate)
-
-                    except Exception as e:
-                        print("[!] Error during loudness normalization", e)
-
+                output_wav = tts_post_process(config, piper_wav_file, temp_dir, index)
                 audio_queue.put(output_wav)
             audio_queue.put(None)
 
@@ -176,22 +194,38 @@ def tts(config, payload, npc_id, full_name):
         audio_thread.join()
 
 
-def tts_voicefixer_whole(config, piper_wav_file, temp_dir):
-    print("[i] Applying voicefixer (whole audio) ...")
-    import time
-    start = time.time()
-    wav_file = join(temp_dir, "voicefixer.wav")
-    config["voicefixer"].restore(input=piper_wav_file, output=wav_file, cuda=False, mode=0)
-    end = time.time()
-    print("[i] Applying voicefixer ...", "took", end - start)
-    # Playback of the original inference
-    wav_data, sample_rate = sf.read(piper_wav_file)
-    sd.play(wav_data * config["volume"], samplerate=sample_rate, blocking=True)
+# def tts_voicefixer_whole(config, piper_wav_file, temp_dir):
+#     print("[i] Applying voicefixer (whole audio) ...")
+#     import time
+#     start = time.time()
+#     wav_file = join(temp_dir, "voicefixer.wav")
+#     config["voicefixer"].restore(input=piper_wav_file, output=wav_file, cuda=False, mode=0)
+#     end = time.time()
+#     print("[i] Applying voicefixer ...", "took", end - start)
+#     # Playback of the original inference
+#     wav_data, sample_rate = sf.read(piper_wav_file)
+#     sd.play(wav_data * config["volume"], samplerate=sample_rate, blocking=True)
 
 
 def tts_init(config):
-    if config["tts"]["enableVoiceFixer"]:
-        import voicefixer
-        print("[i] Initializing voicefixer ...")
-        config["voicefixer"] = voicefixer.VoiceFixer()
-        print("[i] Initializing voicefixer ... done")
+    print("[i] Pre-caching TTS voices ...")
+    for lang in ["de", "fr", "en", "jp"]:
+        if lang in config["voices"]:
+            for voice in config["voices"][lang]:
+                model = voice["model"]
+                language = voice["language"]
+                model_file = os.path.abspath("piper/models/" + model + "_" + language + ".onnx")
+                config_file = os.path.abspath("piper/models/" + model + "_" + language + ".json")
+
+                if model_file not in PIPER_VOICE_CACHE:
+                    print("[i] Pre-caching TTS voices ...", model + "_" + language)
+                    from piper import PiperVoice
+                    tts_model = PiperVoice.load(model_file, config_path=config_file, use_cuda=False)
+                    PIPER_VOICE_CACHE[model_file] = tts_model
+
+    # if config["tts"]["enableVoiceFixer"]:
+    #     import voicefixer
+    #     print("[i] Initializing voicefixer ...")
+    #     config["voicefixer"] = voicefixer.VoiceFixer()
+    #     print("[i] Initializing voicefixer ... done")
+    pass
