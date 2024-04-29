@@ -3,15 +3,18 @@ import random
 import traceback
 
 
-def select_voice(config, npc_id, full_name):
+def select_voice(config, npc_id, full_name, lang):
     """
     Selects a voice based on available infos
     :param config: the global config
     :param npc_id: the npc id
     :param full_name: the full name
+    :param lang: the language (auto will map to en)
     :return: tts voice (dict with model, language, speaker)
     """
-    lang = config["language"]
+    if lang not in ["en", "fr", "de", "jp"]:
+        print("[w] Unknown language", lang, "--> Defaulting to en")
+        lang = "en"
     npc_id = str(npc_id)
     print("[i] Select voice query", npc_id, "+", full_name)
 

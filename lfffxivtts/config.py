@@ -59,6 +59,7 @@ def write_config(config):
         "language": config["language"],
         "volume": config["volume"],
         "enable": config["enable"],
+        "outputDeviceIndex": config["outputDeviceIndex"],
         "websocketURI": config["websocketURI"],
         "tts": config["tts"]
     }

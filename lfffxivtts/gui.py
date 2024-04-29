@@ -4,7 +4,10 @@ import wx
 import sys
 from config import read_config, write_config
 from client import start_client
-import multiprocessing
+import sounddevice as sd
+
+LANGUAGE_CHOICES = ["auto", "en", "de", "fr", "jp"]
+LANGUAGE_CHOICES_LABELS = ["Auto-select language", "English", "German", "French", "Japanese"]
 
 
 class RedirectText:
@@ -24,7 +27,7 @@ class MainFrame(wx.Frame):
         panel = wx.Panel(self)
 
         self.config = read_config()
-        self.config["tts"]["enableVoiceFixer"] = False # Currently broken due to multiprocessing
+        self.config["tts"]["enableVoiceFixer"] = False  # Currently broken due to multiprocessing
         self.voice_server = None
 
         self.log_text = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY)
@@ -56,16 +59,15 @@ class MainFrame(wx.Frame):
         # Checkbox settings panel
         checkbox_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
 
-        self.select_language = wx.Choice(checkbox_panel, choices=["en", "de", "jp", "fr"])
-        self.select_language.SetString(0, "English")
-        self.select_language.SetString(1, "German")
-        self.select_language.SetString(2, "Japanese")
-        self.select_language.SetString(3, "French")
+        self.select_language = wx.Choice(checkbox_panel, choices=LANGUAGE_CHOICES)
+        for i, text in enumerate(LANGUAGE_CHOICES_LABELS):
+            self.select_language.SetString(i, text)
+
         # self.checkbox_enable_voicefixer = wx.CheckBox(checkbox_panel, label="voicefixer (CPU intensive)")
         self.checkbox_enable_noisereduce = wx.CheckBox(checkbox_panel, label="noisereduce")
         self.checkbox_enable_tts = wx.CheckBox(checkbox_panel, label="Enable TTS")
 
-        self.select_language.SetSelection(["en", "de", "jp", "fr"].index(self.config["language"]))
+        self.select_language.SetSelection(LANGUAGE_CHOICES.index(self.config["language"]))
         # self.checkbox_enable_voicefixer.SetValue(self.config["tts"]["enableVoiceFixer"])
         self.checkbox_enable_noisereduce.SetValue(self.config["tts"]["enableNoiseReduce"])
         self.checkbox_enable_tts.SetValue(self.config["enable"])
@@ -82,9 +84,20 @@ class MainFrame(wx.Frame):
 
         self.volume_slider = wx.Slider(volume_panel, value=int(self.config["volume"] * 100))
 
+        self.audio_output_devices = [{"index": -1, "name": "Default"}] + [device for device in sd.query_devices() if
+                                                                          device["max_output_channels"] > 0]
+        self.device_choice = wx.Choice(volume_panel,
+                                       choices=[str(device["index"]) for device in self.audio_output_devices])
+
+        for i, device in enumerate(self.audio_output_devices):
+            self.device_choice.SetString(i, device["name"])
+            if str(device["index"]) == str(self.config["outputDeviceIndex"]):
+                self.device_choice.SetSelection(i)
+
         volume_panel_sizer.Add(wx.StaticText(volume_panel, label="Volume"),
                                flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
         volume_panel_sizer.Add(self.volume_slider, flag=wx.ALL | wx.EXPAND, border=5, proportion=1)
+        volume_panel_sizer.Add(self.device_choice, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
 
         volume_panel.SetSizer(volume_panel_sizer)
 
@@ -97,14 +110,21 @@ class MainFrame(wx.Frame):
 
         self.volume_slider.Bind(wx.EVT_SLIDER, self.on_change_volume)
         self.select_language.Bind(wx.EVT_CHOICE, self.on_select_language)
+        self.device_choice.Bind(wx.EVT_CHOICE, self.on_select_device)
         # self.checkbox_enable_voicefixer.Bind(wx.EVT_CHECKBOX, self.on_toggle_voicefixer)
         self.checkbox_enable_noisereduce.Bind(wx.EVT_CHECKBOX, self.on_toggle_noisereduce)
         self.checkbox_enable_tts.Bind(wx.EVT_CHECKBOX, self.on_toggle_tts)
 
         self.confirm_websocket_uri.Bind(wx.EVT_BUTTON, self.on_confirm_websocket_uri)
 
+    def on_select_device(self, event):
+        new_device = self.audio_output_devices[self.device_choice.GetSelection()]
+        print("[>] output device =", new_device["name"])
+        self.config["outputDeviceIndex"] = new_device["index"]
+        write_config(self.config)
+
     def on_select_language(self, event):
-        new_lang = ["en", "de", "jp", "fr"][self.select_language.GetSelection()]
+        new_lang = LANGUAGE_CHOICES[self.select_language.GetSelection()]
         print("[>] language =", new_lang)
         self.config["language"] = new_lang
         write_config(self.config)

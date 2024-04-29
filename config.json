@@ -1,7 +1,8 @@
 {
-    "language": "en",
+    "language": "auto",
     "volume": 1.0,
     "enable": true,
+    "outputDeviceIndex": -1,
     "websocketURI": "ws://localhost:8081/Messages",
     "tts": {
         "enableVoiceFixer": false,

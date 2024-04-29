@@ -10,11 +10,11 @@ def main():
             exit(0)
         elif message.startswith("lang "):
             lang = message.split(" ")[1].strip()
-            if lang in ["de", "en", "fr", "jp"]:
+            if lang in ["auto", "de", "en", "fr", "jp"]:
                 config["language"] = lang
                 print("[i] --> set language to", lang)
             else:
-                print("[!] invalid language. must be any of en, fr, jp, de")
+                print("[!] invalid language. must be any of en, fr, jp, de or auto")
         elif "//" in message:
             tts_simple(config, message.split("//")[1], message.split("//")[0], message.split("//")[0])
         else:

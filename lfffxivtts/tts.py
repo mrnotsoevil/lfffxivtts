@@ -152,7 +152,7 @@ def tts_post_process(config, input_wav, temp_dir, index):
 
 
 def tts_simple(config, payload, npc_id, full_name):
-    voice = select_voice(config, npc_id, full_name)
+    voice = select_voice(config, npc_id, full_name, config["language"])
 
     if voice is None:
         print("[!] No voice found. Cancelling!")

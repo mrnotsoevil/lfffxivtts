@@ -15,7 +15,6 @@ from tts import tts_init, run_piper, tts_post_process
 import traceback
 import uuid
 
-CURRENT_PROCESS_UUID = None
 CURRENT_PROCESS = None
 CURRENT_PROCESS_TMP = None
 
@@ -24,8 +23,6 @@ def tts_cancel():
     print("[>] Cancellation requested")
     global CURRENT_PROCESS
     global CURRENT_PROCESS_TMP
-    global CURRENT_PROCESS_UUID
-    CURRENT_PROCESS_UUID = None
     try:
         if CURRENT_PROCESS is not None:
             CURRENT_PROCESS.terminate()
@@ -58,7 +55,10 @@ def tts_post_process_say(config, temp_dir, wav_files):
                     break
 
                 wav_data, sample_rate = sf.read(wav_file)
-                sd.play(wav_data * config["volume"], samplerate=sample_rate, blocking=True)
+                device_id = int(config["outputDeviceIndex"])
+                if device_id < 0:
+                    device_id = None
+                sd.play(wav_data * config["volume"], samplerate=sample_rate, blocking=True, device=device_id)
             else:
                 time.sleep(0.1)  # Sleep briefly to avoid busy waiting
 
@@ -86,17 +86,17 @@ def tts_say(config, message):
     payload = message["Payload"]
     speaker = message["Speaker"] or ""
     npc_id = message["NpcId"] or 0
+    lang = "auto"
+    if config["language"] != "auto":
+        lang = config["language"]
+    elif "Language" in message:
+        lang = { "English": "en", "German": "de", "French": "fr", "Japanese": "jp" }.get(message["Language"], "en")
 
-    voice = select_voice(config, npc_id, speaker)
+    voice = select_voice(config, npc_id, speaker, lang)
 
     if voice is None:
         print("[!] No voice found. Cancelling!")
         return
-
-    global CURRENT_PROCESS_UUID
-    current_job = uuid.uuid4().hex
-    CURRENT_PROCESS_UUID = current_job
-    print("[i] Preparing job", CURRENT_PROCESS_UUID)
 
     global CURRENT_PROCESS_TMP
     CURRENT_PROCESS_TMP = tempfile.TemporaryDirectory(ignore_cleanup_errors=True)
@@ -108,13 +108,6 @@ def tts_say(config, message):
                                 voice["speaker"], temp_dir, "piper"))
     end = time.time()
     print("[i] Full piper inference time was", end - start, "seconds")
-
-    # Sync
-    # await asyncio.sleep(0.2)
-
-    # Check if we are still the job
-    if current_job != CURRENT_PROCESS_UUID:
-        return
 
     # Schedule audioplayer
     global CURRENT_PROCESS
