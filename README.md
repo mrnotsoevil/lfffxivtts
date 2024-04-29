@@ -24,10 +24,8 @@ A list of voice samples can be found [here](https://rhasspy.github.io/piper-samp
 
 ## Usage
 
-Download the package and extract it.
-
-* Windows: Double-click the `start.bat` file
-* Linux: Double-click the `start.sh` file
+* Windows: Download the package and extract it. Double-click the `start.bat` file located in the extracted directory.
+* Linux: Double-click the `lfFFXIVTTS.AppImage` file. If it does not start, try installing the `espeak-ng` package. 
 * macos: No package ready yet, sorry (I have no mac; use the dev environment and run the main.py)
 
 In the TextToTalk plugin, choose the **Websocket** backend and
